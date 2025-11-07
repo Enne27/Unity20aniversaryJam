@@ -4,8 +4,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class SimplePlayerMovementInput : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
-    [SerializeField] InputActionReference moveAction;
+    [Header("Movimiento")]
+    [SerializeField] float walkSpeed = 5f;
+    [SerializeField] float sprintSpeed = 9f;
+
+    [Header("Input Actions")]
+    [SerializeField] InputActionReference moveAction;   
+    [SerializeField] InputActionReference sprintAction; 
 
     CharacterController controller;
 
@@ -17,11 +22,23 @@ public class SimplePlayerMovementInput : MonoBehaviour
     void Update()
     {
         Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
+        bool isSprinting = sprintAction.action.IsPressed();
+
+        float currentSpeed = isSprinting ? sprintSpeed : walkSpeed;
 
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
     }
 
-    void OnEnable() => moveAction.action.Enable();
-    void OnDisable() => moveAction.action.Disable();
+    void OnEnable()
+    {
+        moveAction.action.Enable();
+        sprintAction.action.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction.action.Disable();
+        sprintAction.action.Disable();
+    }
 }

@@ -168,8 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c7907d7591cef499e0f62c71bcb57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimplePlayerMovementInput
-  speed: 5
+  walkSpeed: 5
+  sprintSpeed: 10
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  sprintAction: {fileID: -7471211009204490832, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!143 &319489465
 CharacterController:
   m_ObjectHideFlags: 0
@@ -233,7 +235,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319489462}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
