@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class FirstPersonLook : MonoBehaviour
 {
-    [SerializeField] float sensitivity = 2f;
+    [SerializeField] float sensitivity = 1f;
     [SerializeField] Transform playerBody;
-    [SerializeField] InputActionReference lookAction; // referencia al input de "Look" del Player Input
+    [SerializeField] InputActionReference lookAction; 
 
     float xRotation = 0f;
 
