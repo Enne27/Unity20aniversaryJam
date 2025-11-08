@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class TimeShiftManager : MonoBehaviour
 {
+    [SerializeField] InputActionReference timeTravelAction;
+
     //El nivel empieza en el presente
     public bool isPresent = true;
     public GameObject player;
@@ -22,9 +24,19 @@ public class TimeShiftManager : MonoBehaviour
         presentLayer = LayerMask.NameToLayer("Present");
     }
 
+    private void OnEnable()
+    {
+        timeTravelAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        timeTravelAction.action.Disable();
+    }
+
     void Update()
     {
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (timeTravelAction.action.IsPressed())
         {
             ShiftTime();
         }
