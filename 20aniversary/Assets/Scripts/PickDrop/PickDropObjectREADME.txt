@@ -1,0 +1,1 @@
+PickObject tiene el funcionamiento de cojer y soltar objetos con el tag de CollectibleObject. Hay que mejorarlo.
