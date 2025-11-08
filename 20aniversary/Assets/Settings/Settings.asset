@@ -11,10 +11,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56bb439a1d72dfe45a4454dba46a96b3, type: 3}
   m_Name: Settings
-  m_EditorClassIdentifier: Assembly-CSharp::ScriptableSettings
-  screenResolution: 3
+  m_EditorClassIdentifier: Assembly-CSharp::Settings
+  screenResolution: 2
   screenQuality: 0
   screenMode: 0
   masterVolume: 1
   musicVolume: 1
   sfxVolume: 1
+  muteAll: 0
