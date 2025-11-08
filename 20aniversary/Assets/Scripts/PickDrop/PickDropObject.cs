@@ -3,35 +3,45 @@ using UnityEngine.InputSystem;
 
 public class PickObject : MonoBehaviour
 {
+    [Header("References")]
     public GameObject handPoint;
     private GameObject pickedObject = null;
+    private GameObject objectInRange = null;
 
-    [Header("Input Actions")]
+    [Header("Cursor Objects")]
+    public GameObject offObjectCursor;
+    public GameObject onObjectCursor;
+
+    [Header("Input Action")]
     [SerializeField] private InputActionReference interact;
-
-    private bool interactPressed = false;
 
     private void OnEnable()
     {
-        interact.action.performed += OnInteractPerformed;
-        interact.action.canceled += OnInteractCanceled;
+        interact.action.performed += OnInteract;
         interact.action.Enable();
     }
 
     private void OnDisable()
     {
-        interact.action.performed -= OnInteractPerformed;
-        interact.action.canceled -= OnInteractCanceled;
+        interact.action.performed -= OnInteract;
         interact.action.Disable();
     }
 
-    private void OnInteractPerformed(InputAction.CallbackContext context)
+    private void OnInteract(InputAction.CallbackContext context)
     {
-        interactPressed = true;
-
-        if (pickedObject != null)
+        // Si no tenemos nada en la mano y hay un objeto en rango → recoger
+        if (pickedObject == null && objectInRange != null)
         {
-            // Soltar objeto
+            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            objectInRange.transform.position = handPoint.transform.position;
+            objectInRange.transform.SetParent(handPoint.transform);
+            pickedObject = objectInRange;
+        }
+        // Si ya tenemos un objeto → soltar
+        else if (pickedObject != null)
+        {
             Rigidbody rb = pickedObject.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;
@@ -40,22 +50,26 @@ public class PickObject : MonoBehaviour
         }
     }
 
-    private void OnInteractCanceled(InputAction.CallbackContext context)
+    private void OnTriggerEnter(Collider other)
     {
-        interactPressed = false;
+        if (other.CompareTag("CollectibleObject"))
+        {
+            objectInRange = other.gameObject;
+            onObjectCursor.SetActive(true);
+            offObjectCursor.SetActive(false);
+        }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("CollectibleObject") && interactPressed && pickedObject == null)
+        if (other.CompareTag("CollectibleObject"))
         {
-            // Recoger objeto
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            other.transform.position = handPoint.transform.position;
-            other.transform.SetParent(handPoint.transform);
-            pickedObject = other.gameObject;
+            if (other.gameObject == objectInRange)
+            {
+                objectInRange = null;
+                onObjectCursor.SetActive(false);
+                offObjectCursor.SetActive(true);
+            }
         }
     }
 }
