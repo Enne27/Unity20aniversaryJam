@@ -12,10 +12,8 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask presentLayer;
     private LayerMask pastLayer;
 
-    public static bool hasDispositivoTemporal = false;
-
     /// <summary>
-    /// En start, buscamos al player, y recuperamos su cámara.
+    /// En start, buscamos al player, y recuperamos su cï¿½mara.
     /// Buscamos las layers de pasado y presente, para poder uasrlas luego
     /// </summary>
     void Start()
@@ -41,17 +39,17 @@ public class TimeShiftManager : MonoBehaviour
 
     void Update()
     {
-        if (timeTravelAction.action.WasPressedThisFrame() && hasDispositivoTemporal)
+        if (timeTravelAction.action.WasPressedThisFrame())
         {
             ShiftTime();
         }
     }
 
     /// <summary>
-    /// Al ejecutar la función, el script mira si la variable isPresent está activada,
-    /// si lo está, cambia la CullingMask de la cámara activando la del pasado, 
+    /// Al ejecutar la funciï¿½n, el script mira si la variable isPresent estï¿½ activada,
+    /// si lo estï¿½, cambia la CullingMask de la cï¿½mara activando la del pasado, 
     /// desactivando la del presente, y cambiando isPresent a false, en caso de que
-    /// isPresent sea false, hace la operación inversa
+    /// isPresent sea false, hace la operaciï¿½n inversa
     /// </summary>
     private void ShiftTime()
     {
@@ -61,6 +59,7 @@ public class TimeShiftManager : MonoBehaviour
             playerCam.cullingMask |= ~(1 << presentLayer);
             player.layer = pastLayer;
             isPresent = false;
+            // MusicManager.Instance.PlayMusic();
         }
         else
         {
@@ -68,6 +67,7 @@ public class TimeShiftManager : MonoBehaviour
             playerCam.cullingMask |= ~(1 << pastLayer);
             player.layer = presentLayer;
             isPresent = true;
+            // MusicManager.Instance.PlayMusic();
         }
     }
 }

@@ -1,12 +1,12 @@
 using Autodesk.Fbx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PickObject : MonoBehaviour
+public class CajonInteract : MonoBehaviour
 {
     [Header("References")]
     public GameObject handPoint;
-    private GameObject pickedObject = null;
     private GameObject objectInRange = null;
 
     [Header("Cursor Objects")]
@@ -18,6 +18,9 @@ public class PickObject : MonoBehaviour
 
     [Header("Interact hint")]
     [SerializeField] private GameObject canvasInteractHint;
+
+    [Header("Animator Trigger Name")]
+    [SerializeField] private string animationTrigger = "Interact";
 
     private void OnEnable()
     {
@@ -33,32 +36,18 @@ public class PickObject : MonoBehaviour
 
     private void OnInteract(InputAction.CallbackContext context)
     {
-        // Si no tenemos nada en la mano y hay un objeto en rango → recoger
-        if (pickedObject == null && objectInRange != null)
+        if (objectInRange == null) return;
+
+        Animator anim = objectInRange.GetComponent<Animator>();
+        if (anim != null)
         {
-            // if(objectInRange.gameObject.name == "SM_001_DispositivoTemporal") TimeShiftManager.hasDispositivoTemporal = true;
-            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            objectInRange.transform.position = handPoint.transform.position;
-            objectInRange.transform.SetParent(handPoint.transform);
-            pickedObject = objectInRange;
-        }
-        // Si ya tenemos un objeto → soltar
-        else if (pickedObject != null)
-        {
-            // if(pickedObject.gameObject.name == "SM_001_DispositivoTemporal") TimeShiftManager.hasDispositivoTemporal = false;
-            Rigidbody rb = pickedObject.GetComponent<Rigidbody>();
-            rb.useGravity = true;
-            rb.isKinematic = false;
-            pickedObject.transform.SetParent(null);
-            pickedObject = null;
+            anim.SetTrigger(animationTrigger);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("CollectibleObject"))
+        if (other.CompareTag("Cajon"))
         {
             objectInRange = other.gameObject;
             onObjectCursor.SetActive(true);
@@ -70,7 +59,7 @@ public class PickObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("CollectibleObject"))
+        if (other.CompareTag("Cajon"))
         {
             if (other.gameObject == objectInRange)
             {
