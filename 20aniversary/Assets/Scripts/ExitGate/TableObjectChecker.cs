@@ -10,6 +10,8 @@ public class TableObjectChecker : MonoBehaviour
 
     private HashSet<GameObject> objetosSobreMesa = new HashSet<GameObject>();
 
+    public Animator doorAnimator;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == objeto1 || other.gameObject == objeto2 || other.gameObject == objeto3)
@@ -35,6 +37,7 @@ public class TableObjectChecker : MonoBehaviour
             objetosSobreMesa.Contains(objeto3))
         {
             // Aquí puedes llamar a la función de abrir puerta
+            doorAnimator.SetTrigger("Open");
         }
     }
 }
