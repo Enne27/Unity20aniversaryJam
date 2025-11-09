@@ -9,6 +9,18 @@ public class MusicManager : MonoBehaviour
     #region SINGLETON
     static MusicManager musicManager;
 
+    private void Awake()
+    {
+        if (musicManager == null)
+        {
+            musicManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public static MusicManager instance
     {
         get
