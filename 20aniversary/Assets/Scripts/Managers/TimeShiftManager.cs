@@ -59,7 +59,7 @@ public class TimeShiftManager : MonoBehaviour
             playerCam.cullingMask |= ~(1 << presentLayer);
             player.layer = pastLayer;
             isPresent = false;
-            // MusicManager.Instance.ChangeMusicTime(false);
+            // // MusicManager.Instance.ChangeMusicTime(false);
         }
         else
         {
