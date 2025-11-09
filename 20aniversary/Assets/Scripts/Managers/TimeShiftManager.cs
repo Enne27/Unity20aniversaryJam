@@ -59,7 +59,7 @@ public class TimeShiftManager : MonoBehaviour
             playerCam.cullingMask |= ~(1 << presentLayer);
             player.layer = pastLayer;
             isPresent = false;
-            MusicManager.Instance.PlayMusic();
+            // MusicManager.Instance.PlayMusic();
         }
         else
         {
@@ -67,7 +67,7 @@ public class TimeShiftManager : MonoBehaviour
             playerCam.cullingMask |= ~(1 << pastLayer);
             player.layer = presentLayer;
             isPresent = true;
-            MusicManager.Instance.PlayMusic();
+            // MusicManager.Instance.PlayMusic();
         }
     }
 }
