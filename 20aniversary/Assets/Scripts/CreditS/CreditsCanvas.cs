@@ -29,19 +29,22 @@ public class CreditsCanvas : MonoBehaviour
     private void OnEnable()
     {
         if (CanvasGroupButtons == null)
-            CanvasGroupButtons = exitButton.GetComponent<CanvasGroup>() ?? buttonsParent.gameObject.AddComponent<CanvasGroup>();
+            CanvasGroupButtons = buttonsParent.GetComponent<CanvasGroup>() ?? buttonsParent.gameObject.AddComponent<CanvasGroup>();
 
         CanvasGroupButtons.alpha = 0f;
+        isCanvasGroupVisible = false;
+
         InitializeButtons(exitButton, ScenesManager.Instance.ExitGame);
         InitializeButtons(restartButton, ()=>ScenesManager.Instance.ChangeScene("MainMenuScene"));
     }
 
     private void InitializeButtons(Button button, UnityAction onClickAction)
     {
-        button.gameObject.SetActive(false);
         button.interactable = false;
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(onClickAction);
+
+        lastMousePos = Vector3.zero;
     }
 
     private void Update()
@@ -72,7 +75,7 @@ public class CreditsCanvas : MonoBehaviour
 
         if (!isCanvasGroupVisible && fadeCoroutine == null)
         {
-            fadeCoroutine = StartCoroutine(FadeSkipButton(true));
+            fadeCoroutine = StartCoroutine(FadeButtons(true));
         }
     }
 
@@ -82,14 +85,12 @@ public class CreditsCanvas : MonoBehaviour
 
         if (inactivityTimer >= mouseInactivityTime && isCanvasGroupVisible && fadeCoroutine == null)
         {
-            fadeCoroutine = StartCoroutine(FadeSkipButton(false));
+            fadeCoroutine = StartCoroutine(FadeButtons(false));
         }
     }
 
-    private IEnumerator FadeSkipButton(bool show)
+    private IEnumerator FadeButtons(bool show)
     {
-        buttonsParent.gameObject.SetActive(true);
-
         float startAlpha = CanvasGroupButtons.alpha;
         float targetAlpha = show ? 1f : 0f;
         float elapsed = 0f;
@@ -109,11 +110,6 @@ public class CreditsCanvas : MonoBehaviour
         }
 
         isCanvasGroupVisible = show;
-
-        if (!show)
-        {
-            buttonsParent.gameObject.SetActive(false);
-        }
 
         fadeCoroutine = null;
     }
