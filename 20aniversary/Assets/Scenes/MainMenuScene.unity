@@ -119,6 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &296018728
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +256,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296018728}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 --- !u!1 &314237666
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +289,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   mainMenuMusic: {fileID: 8300000, guid: 117b3fa1142d89344b119e564c6b2ab8, type: 3}
+<<<<<<< HEAD
   gameMusic: {fileID: 0}
+=======
+  gameMusic: {fileID: 8300000, guid: fd165909da8ed3e48991e9b5b31ac858, type: 3}
+  pastMusic: {fileID: 0}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   musicSource: {fileID: 661226004}
   mixer: {fileID: 24100000, guid: 48ffd6fe823ce274d87dfb986dcfc326, type: 2}
 --- !u!4 &314237668
@@ -861,15 +869,26 @@ RectTransform:
   m_GameObject: {fileID: 1250668905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1680000353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
+=======
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 450}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1250668907
 MonoBehaviour:
@@ -891,7 +910,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_Sprite: {fileID: 0}
+=======
+  m_Sprite: {fileID: 21300000, guid: 8a81e4ad88823264e936cc6b33af47e8, type: 3}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -909,7 +932,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250668905}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1480183768
+=======
+--- !u!1 &1338892651
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -917,22 +944,35 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1480183769}
   - component: {fileID: 1480183771}
   - component: {fileID: 1480183770}
   m_Layer: 5
   m_Name: Text (TMP)
+=======
+  - component: {fileID: 1338892652}
+  - component: {fileID: 1338892654}
+  - component: {fileID: 1338892653}
+  m_Layer: 5
+  m_Name: Title
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &1480183769
+=======
+--- !u!224 &1338892652
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1480183768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -947,17 +987,42 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1480183770
+=======
+  m_GameObject: {fileID: 1338892651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1680000353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 140}
+  m_SizeDelta: {x: 266.66, y: 75}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1338892653
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1480183768}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+=======
+  m_GameObject: {fileID: 1338892651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -966,6 +1031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_text: 'Settings
 
 '
@@ -1040,11 +1106,25 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1480183771
+=======
+  m_Sprite: {fileID: 21300000, guid: 212166e773d7da249bc94145a89bc811, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1338892654
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1480183768}
   m_CullTransparentMesh: 1
 --- !u!1 &1544448811
@@ -1182,6 +1262,9 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544448811}
+=======
+  m_GameObject: {fileID: 1338892651}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_CullTransparentMesh: 1
 --- !u!1 &1680000349
 GameObject:
@@ -1278,6 +1361,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1250668906}
+<<<<<<< HEAD
+=======
+  - {fileID: 1338892652}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   - {fileID: 2107018161}
   - {fileID: 2013335825}
   - {fileID: 1903969593}
@@ -1289,6 +1376,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
 --- !u!1 &1850754759
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1513,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850754759}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
 --- !u!1 &1903969592
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,8 +1698,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: -118}
   m_SizeDelta: {x: 160, y: 30}
+=======
+  m_AnchoredPosition: {x: 0, y: -35}
+  m_SizeDelta: {x: 200, y: 75}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2013335826
 MonoBehaviour:
@@ -1754,8 +1849,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 0, y: 90}
   m_SizeDelta: {x: 160, y: 30}
+=======
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 200, y: 75}
+>>>>>>> parent of c2f86a1 (Musica y Diseño de settings)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107018162
 MonoBehaviour:
