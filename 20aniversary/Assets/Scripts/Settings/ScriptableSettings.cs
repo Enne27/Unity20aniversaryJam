@@ -3,10 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Settings", menuName = "Game Settings/New Game Settings")]
 public class Settings : ScriptableObject
 {
-    [Header("Screen Settings")]
-    [SerializeField, Tooltip("Cambia la resolucion de la pantalla del juego")] public Resolution screenResolution;
-    [SerializeField, Tooltip("Cambia la calidad grafica del juego")] public Quality screenQuality;
-    [SerializeField, Tooltip("Cambia el modo de ventana del juego")] public ScreenMode screenMode;
+    [Header("Gameplay Settings")]
+    [SerializeField, Range(0.01f,1)] public float mouseCameraSensitivity = 0.1f;
 
     [Header("Audio Settings")]
     [SerializeField, Range(0,1)] public float masterVolume = 1; 
@@ -14,7 +12,4 @@ public class Settings : ScriptableObject
     [SerializeField, Range(0,1)] public float sfxVolume = 1;
     [SerializeField] public bool muteAll = false; 
 
-    public enum Resolution { _3840x2160, _2560x1440, _1920x1080, _1280x720, _854x480 }
-    public enum Quality {Ultra, High, Medium, Low }
-    public enum ScreenMode {Fullscreen, Borderless, Windowed}
 }

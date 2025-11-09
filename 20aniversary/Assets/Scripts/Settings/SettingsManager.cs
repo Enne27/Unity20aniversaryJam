@@ -11,6 +11,12 @@ public class SettingsManager : MonoBehaviour
     [Header("Audio Mixer (opcional)")]
     [SerializeField] private AudioMixer mainMixer;
 
+    private const string MASTER_KEY = "MasterVolume";
+    private const string MUSIC_KEY = "MusicVolume";
+    private const string SFX_KEY = "SFXVolume";
+    private const string MUTE_KEY = "MuteAll";
+    private const string SENSITIVITY_KEY = "MouseSensitivity";
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,18 +37,10 @@ public class SettingsManager : MonoBehaviour
             return;
         }
 
-        ApplyScreenSettings();
+        LoadSettingsFromPrefs();
         ApplyAudioSettings();
-        Debug.Log("Configuraciones aplicadas desde ScriptableSettings.");
-    }
 
-    public void ApplyScreenSettings()
-    {
-        Vector2Int resolution = GetResolutionValue(settings.screenResolution);
-        FullScreenMode mode = GetScreenMode(settings.screenMode);
-
-        Screen.SetResolution(resolution.x, resolution.y, mode);
-        QualitySettings.SetQualityLevel((int)settings.screenQuality, true);
+        Debug.Log("Configuraciones cargadas y aplicadas desde ScriptableSettings.");
     }
 
     public void ApplyAudioSettings()
@@ -65,26 +63,6 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
-    public void SetResolution(Settings.Resolution newRes)
-    {
-        settings.screenResolution = newRes;
-        Vector2Int res = GetResolutionValue(newRes);
-        Screen.SetResolution(res.x, res.y, GetScreenMode(settings.screenMode));
-    }
-
-    public void SetQuality(Settings.Quality newQuality)
-    {
-        settings.screenQuality = newQuality;
-        QualitySettings.SetQualityLevel((int)newQuality, true);
-    }
-
-    public void SetScreenMode(Settings.ScreenMode newMode)
-    {
-        settings.screenMode = newMode;
-        Vector2Int res = GetResolutionValue(settings.screenResolution);
-        Screen.SetResolution(res.x, res.y, GetScreenMode(newMode));
-    }
-
     public void SetMasterVolume(float value)
     {
         settings.masterVolume = Mathf.Clamp01(value);
@@ -92,6 +70,8 @@ public class SettingsManager : MonoBehaviour
             mainMixer.SetFloat("MasterVolume", LinearToDecibel(value));
         else
             AudioListener.volume = value;
+
+        PlayerPrefs.SetFloat(MASTER_KEY, value);
     }
 
     public void SetMusicVolume(float value)
@@ -99,6 +79,8 @@ public class SettingsManager : MonoBehaviour
         settings.musicVolume = Mathf.Clamp01(value);
         if (mainMixer != null)
             mainMixer.SetFloat("MusicVolume", LinearToDecibel(value));
+
+        PlayerPrefs.SetFloat(MUSIC_KEY, value);
     }
 
     public void SetSFXVolume(float value)
@@ -106,6 +88,8 @@ public class SettingsManager : MonoBehaviour
         settings.sfxVolume = Mathf.Clamp01(value);
         if (mainMixer != null)
             mainMixer.SetFloat("SFXVolume", LinearToDecibel(value));
+
+        PlayerPrefs.SetFloat(SFX_KEY, value);
     }
 
     public void MuteAll(bool state)
@@ -129,34 +113,51 @@ public class SettingsManager : MonoBehaviour
         {
             ApplyAudioSettings();
         }
+
+        PlayerPrefs.SetInt(MUTE_KEY, state ? 1 : 0);
+    }
+
+    public void SetMouseSensitivity(float value)
+    {
+        settings.mouseCameraSensitivity = Mathf.Clamp(value, 0.01f, 1f);
+        PlayerPrefs.SetFloat(SENSITIVITY_KEY, settings.mouseCameraSensitivity);
+    }
+
+    public float GetMouseSensitivity()
+    {
+        return settings.mouseCameraSensitivity;
+    }
+
+    public void LoadSettingsFromPrefs()
+    {
+        if (PlayerPrefs.HasKey(MASTER_KEY))
+            settings.masterVolume = PlayerPrefs.GetFloat(MASTER_KEY);
+
+        if (PlayerPrefs.HasKey(MUSIC_KEY))
+            settings.musicVolume = PlayerPrefs.GetFloat(MUSIC_KEY);
+
+        if (PlayerPrefs.HasKey(SFX_KEY))
+            settings.sfxVolume = PlayerPrefs.GetFloat(SFX_KEY);
+
+        if (PlayerPrefs.HasKey(MUTE_KEY))
+            settings.muteAll = PlayerPrefs.GetInt(MUTE_KEY) == 1;
+
+        if (PlayerPrefs.HasKey(SENSITIVITY_KEY))
+            settings.mouseCameraSensitivity = PlayerPrefs.GetFloat(SENSITIVITY_KEY);
+    }
+
+    public void SaveSettingsToPrefs()
+    {
+        PlayerPrefs.SetFloat(MASTER_KEY, settings.masterVolume);
+        PlayerPrefs.SetFloat(MUSIC_KEY, settings.musicVolume);
+        PlayerPrefs.SetFloat(SFX_KEY, settings.sfxVolume);
+        PlayerPrefs.SetInt(MUTE_KEY, settings.muteAll ? 1 : 0);
+        PlayerPrefs.SetFloat(SENSITIVITY_KEY, settings.mouseCameraSensitivity);
+        PlayerPrefs.Save();
     }
 
     private float LinearToDecibel(float linear)
     {
         return linear > 0 ? Mathf.Log10(linear) * 20f : -80f;
-    }
-
-    private Vector2Int GetResolutionValue(Settings.Resolution res)
-    {
-        return res switch
-        {
-            Settings.Resolution._3840x2160 => new Vector2Int(3840, 2160),
-            Settings.Resolution._2560x1440 => new Vector2Int(2560, 1440),
-            Settings.Resolution._1920x1080 => new Vector2Int(1920, 1080),
-            Settings.Resolution._1280x720 => new Vector2Int(1280, 720),
-            Settings.Resolution._854x480 => new Vector2Int(854, 480),
-            _ => new Vector2Int(1920, 1080)
-        };
-    }
-
-    private FullScreenMode GetScreenMode(Settings.ScreenMode mode)
-    {
-        return mode switch
-        {
-            Settings.ScreenMode.Fullscreen => FullScreenMode.ExclusiveFullScreen,
-            Settings.ScreenMode.Borderless => FullScreenMode.FullScreenWindow,
-            Settings.ScreenMode.Windowed => FullScreenMode.Windowed,
-            _ => FullScreenMode.Windowed
-        };
     }
 }

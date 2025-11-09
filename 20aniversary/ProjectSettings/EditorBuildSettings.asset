@@ -5,9 +5,24 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PruebaMovimientoPersonaje.unity
     guid: 77fcd915799cdbe4983a3b82dc114b71
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 34e71a7286a96ff438f47811f59fd90b
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: e6a811a0a2f9e5e43b90766b9d7cee57
+  - enabled: 1
+    path: Assets/Scenes/SettingsScene.unity
+    guid: 5c8a2385db19d4140adfa4d5954dded6
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 890c4c414239de54eaca6ab846cf1c8d
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: e382b4095fbf65b42ba80ed8b777f113
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
