@@ -36,6 +36,7 @@ public class PickObject : MonoBehaviour
         // Si no tenemos nada en la mano y hay un objeto en rango → recoger
         if (pickedObject == null && objectInRange != null)
         {
+            if(objectInRange.gameObject.name == "SM_001_DispositivoTemporal") TimeShiftManager.hasDispositivoTemporal = true;
             Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
             rb.useGravity = false;
             rb.isKinematic = true;
@@ -46,6 +47,7 @@ public class PickObject : MonoBehaviour
         // Si ya tenemos un objeto → soltar
         else if (pickedObject != null)
         {
+            if(pickedObject.gameObject.name == "SM_001_DispositivoTemporal") TimeShiftManager.hasDispositivoTemporal = false;
             Rigidbody rb = pickedObject.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;

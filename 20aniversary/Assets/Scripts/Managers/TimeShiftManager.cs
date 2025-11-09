@@ -12,6 +12,8 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask presentLayer;
     private LayerMask pastLayer;
 
+    public static bool hasDispositivoTemporal = false;
+
     /// <summary>
     /// En start, buscamos al player, y recuperamos su cámara.
     /// Buscamos las layers de pasado y presente, para poder uasrlas luego
@@ -19,9 +21,12 @@ public class TimeShiftManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerCam = Camera.main;
         pastLayer = LayerMask.NameToLayer("Past");
         presentLayer = LayerMask.NameToLayer("Present");
+        playerCam.cullingMask &= (1 << presentLayer);
+        playerCam.cullingMask |= ~(1 << pastLayer);
+        player.layer = presentLayer;
+
     }
 
     private void OnEnable()
@@ -36,7 +41,7 @@ public class TimeShiftManager : MonoBehaviour
 
     void Update()
     {
-        if (timeTravelAction.action.IsPressed())
+        if (timeTravelAction.action.WasPressedThisFrame() && hasDispositivoTemporal)
         {
             ShiftTime();
         }
