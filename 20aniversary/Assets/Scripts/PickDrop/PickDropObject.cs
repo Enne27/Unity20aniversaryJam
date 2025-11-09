@@ -1,3 +1,4 @@
+using Autodesk.Fbx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,9 @@ public class PickObject : MonoBehaviour
 
     [Header("Input Action")]
     [SerializeField] private InputActionReference interact;
+
+    [Header("Interact hint")]
+    [SerializeField] private GameObject canvasInteractHint;
 
     private void OnEnable()
     {
@@ -57,6 +61,8 @@ public class PickObject : MonoBehaviour
             objectInRange = other.gameObject;
             onObjectCursor.SetActive(true);
             offObjectCursor.SetActive(false);
+            canvasInteractHint.SetActive(true);
+
         }
     }
 
@@ -69,6 +75,7 @@ public class PickObject : MonoBehaviour
                 objectInRange = null;
                 onObjectCursor.SetActive(false);
                 offObjectCursor.SetActive(true);
+                canvasInteractHint.SetActive(false);
             }
         }
     }
