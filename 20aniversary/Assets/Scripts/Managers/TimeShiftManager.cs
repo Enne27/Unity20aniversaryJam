@@ -12,6 +12,13 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask presentLayer;
     private LayerMask pastLayer;
 
+    // Fade Variables
+    private float fadeDuration = 1f;
+    private float blackExposure = -10f;
+    private bool isFading = false;
+    private bool isFadingBack = false;
+    private float currentFadeTime = 0f;
+
     /// <summary>
     /// En start, buscamos al player, y recuperamos su c�mara.
     /// Buscamos las layers de pasado y presente, para poder usarlas luego
@@ -41,6 +48,7 @@ public class TimeShiftManager : MonoBehaviour
     {
         if (timeTravelAction.action.WasPressedThisFrame())
         {
+            Debug.Log("Pressed");
             ShiftTime();
         }
     }
