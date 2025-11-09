@@ -54,7 +54,7 @@ public class MusicManager : MonoBehaviour
 
         switch (scene.name)
         {
-            case "GAME":
+            case "GameScene":
                 nextClip = gameMusic;
                 break;
             default:
