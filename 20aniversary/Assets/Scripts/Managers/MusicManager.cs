@@ -31,6 +31,8 @@ public class MusicManager : MonoBehaviour
     [Header("Audio Clips de Música por Escena")]
     [SerializeField] private AudioClip mainMenuMusic;
     [SerializeField] private AudioClip gameMusic;
+    [SerializeField] private AudioClip pastMusic;
+
 
     [Header("Audio")]
     [SerializeField] private AudioSource musicSource;
@@ -46,6 +48,16 @@ public class MusicManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded; // Debe eliminarse la subscripci�n para que no se llame m�s de una vez.
+    }
+
+    public void ChangeMusicTime(bool pastOrPresent)
+    {
+        if (pastOrPresent)
+            musicSource.clip = pastMusic;
+        else
+        {
+            musicSource.clip = gameMusic;
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
