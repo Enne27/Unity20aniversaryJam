@@ -12,6 +12,16 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask presentLayer;
     private LayerMask pastLayer;
 
+<<<<<<< HEAD
+=======
+    // Fade Variables
+    private float fadeDuration = 1f;
+    private float blackExposure = -10f;
+    private bool isFading = false;
+    private bool isFadingBack = false;
+    private float currentFadeTime = 0f;
+
+>>>>>>> origin/Anuk
     /// <summary>
     /// En start, buscamos al player, y recuperamos su c�mara.
     /// Buscamos las layers de pasado y presente, para poder uasrlas luego
@@ -39,8 +49,13 @@ public class TimeShiftManager : MonoBehaviour
 
     void Update()
     {
+<<<<<<< HEAD
         if (timeTravelAction.action.WasPressedThisFrame())
+=======
+        if (timeTravelAction.action.WasPressedThisFrame() && !timeWarpVFX.isPlaying)
+>>>>>>> origin/Anuk
         {
+            Debug.Log("Pressed");
             ShiftTime();
         }
     }
