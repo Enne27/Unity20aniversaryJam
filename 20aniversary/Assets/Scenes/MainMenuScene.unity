@@ -176,9 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Timeless
-
-'
+  m_text: Shifted
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -287,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e225f567a74d9de4aa71b1ac311db657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
-  mainMenuMusic: {fileID: 0}
+  mainMenuMusic: {fileID: 8300000, guid: 117b3fa1142d89344b119e564c6b2ab8, type: 3}
   gameMusic: {fileID: 0}
   musicSource: {fileID: 661226004}
   mixer: {fileID: 24100000, guid: 48ffd6fe823ce274d87dfb986dcfc326, type: 2}

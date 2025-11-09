@@ -24,6 +24,9 @@ public class CreditsCanvas : MonoBehaviour
     private float inactivityTimer;
     private bool isCanvasGroupVisible;
     private Coroutine fadeCoroutine;
+
+    [SerializeField, Tooltip("Tiempo hasta mostrar los botones al final")] private float showButtonsDelay = 5f;
+    private bool ignoreMouse = false;
     #endregion
 
     private void OnEnable()
@@ -33,9 +36,19 @@ public class CreditsCanvas : MonoBehaviour
 
         CanvasGroupButtons.alpha = 0f;
         isCanvasGroupVisible = false;
+        ignoreMouse = false;
 
         InitializeButtons(exitButton, ScenesManager.Instance.ExitGame);
         InitializeButtons(restartButton, ()=>ScenesManager.Instance.ChangeScene("MainMenuScene"));
+
+        StartCoroutine(ShowButtonsAfterDelay());
+    }
+
+    private IEnumerator ShowButtonsAfterDelay()
+    {
+        yield return new WaitForSeconds(showButtonsDelay);
+        yield return StartCoroutine(FadeButtons(true));
+        ignoreMouse = true;
     }
 
     private void InitializeButtons(Button button, UnityAction onClickAction)
@@ -49,6 +62,7 @@ public class CreditsCanvas : MonoBehaviour
 
     private void Update()
     {
+        if(ignoreMouse) return;
         HandleMouseActivity();
     }
 
@@ -88,6 +102,7 @@ public class CreditsCanvas : MonoBehaviour
             fadeCoroutine = StartCoroutine(FadeButtons(false));
         }
     }
+
 
     private IEnumerator FadeButtons(bool show)
     {
