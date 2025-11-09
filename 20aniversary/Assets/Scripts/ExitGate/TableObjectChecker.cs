@@ -12,6 +12,8 @@ public class TableObjectChecker : MonoBehaviour
 
     public Animator doorAnimator;
 
+    public FinishGame finish;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == objeto1 || other.gameObject == objeto2 || other.gameObject == objeto3)
@@ -38,6 +40,7 @@ public class TableObjectChecker : MonoBehaviour
         {
             // Aquí puedes llamar a la función de abrir puerta
             doorAnimator.SetTrigger("Open");
+            finish.canFinish = true;
         }
     }
 }

@@ -43,6 +43,10 @@ public class PickObject : MonoBehaviour
             objectInRange.transform.position = handPoint.transform.position;
             objectInRange.transform.SetParent(handPoint.transform);
             pickedObject = objectInRange;
+            if (pickedObject.GetComponent<ObjetoCogible>() != null)
+            {
+                pickedObject.GetComponent<ObjetoCogible>().cogiendo = true;
+            }
         }
         // Si ya tenemos un objeto → soltar
         else if (pickedObject != null)
@@ -51,6 +55,10 @@ public class PickObject : MonoBehaviour
             Rigidbody rb = pickedObject.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;
+            if (pickedObject.GetComponent<ObjetoCogible>() != null)
+            {
+                pickedObject.GetComponent<ObjetoCogible>().cogiendo = false;
+            }
             pickedObject.transform.SetParent(null);
             pickedObject = null;
         }

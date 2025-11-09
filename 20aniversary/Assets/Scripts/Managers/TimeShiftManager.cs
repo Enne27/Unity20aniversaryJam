@@ -27,6 +27,9 @@ public class TimeShiftManager : MonoBehaviour
     private bool isFadingBack = false;
     private float currentFadeTime = 0f;
 
+    public GameObject cochecito;
+    public GameObject librito;
+
     /// <summary>
     /// En start, buscamos al player, y recuperamos su cámara.
     /// Buscamos las layers de pasado y presente, para poder usarlas luego
@@ -74,6 +77,15 @@ public class TimeShiftManager : MonoBehaviour
                     playerCam.cullingMask &= (1 << pastLayer);
                     playerCam.cullingMask |= ~(1 << presentLayer);
                     player.layer = pastLayer;
+                    if (cochecito.gameObject.GetComponent<ObjetoCogible>().cogiendo == true || librito.gameObject.GetComponent<ObjetoCogible>().cogiendo == true)
+                    {
+                        cochecito.layer = pastLayer;
+                        cochecito.transform.GetChild(0).gameObject.layer = pastLayer;
+                    }
+                    if (librito.gameObject.GetComponent<ObjetoCogible>().cogiendo == true)
+                        librito.layer = pastLayer;
+
+                    
                     isPresent = false;
                 }
                 else
@@ -82,6 +94,13 @@ public class TimeShiftManager : MonoBehaviour
                     playerCam.cullingMask &= (1 << presentLayer);
                     playerCam.cullingMask |= ~(1 << pastLayer);
                     player.layer = presentLayer;
+                    if (cochecito.gameObject.GetComponent<ObjetoCogible>().cogiendo == true)
+                    {
+                        cochecito.layer = presentLayer;
+                        cochecito.transform.GetChild(0).gameObject.layer = presentLayer;
+                    }
+                    if(librito.gameObject.GetComponent<ObjetoCogible>().cogiendo == true)
+                        librito.layer = presentLayer;
                     isPresent = true;
                 }
                 isFading = false;

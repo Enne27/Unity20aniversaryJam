@@ -9,6 +9,18 @@ public class MusicManager : MonoBehaviour
     #region SINGLETON
     static MusicManager musicManager;
 
+    private void Awake()
+    {
+        if (musicManager == null)
+        {
+            musicManager = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     public static MusicManager instance
     {
         get
@@ -31,6 +43,8 @@ public class MusicManager : MonoBehaviour
     [Header("Audio Clips de Música por Escena")]
     [SerializeField] private AudioClip mainMenuMusic;
     [SerializeField] private AudioClip gameMusic;
+    [SerializeField] private AudioClip pastMusic;
+
 
     [Header("Audio")]
     [SerializeField] private AudioSource musicSource;
@@ -48,13 +62,23 @@ public class MusicManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded; // Debe eliminarse la subscripci�n para que no se llame m�s de una vez.
     }
 
+    public void ChangeMusicTime(bool pastOrPresent)
+    {
+        if (pastOrPresent)
+            musicSource.clip = pastMusic;
+        else
+        {
+            musicSource.clip = gameMusic;
+        }
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
     {
         AudioClip nextClip = null;
 
         switch (scene.name)
         {
-            case "GAME":
+            case "GameScene":
                 nextClip = gameMusic;
                 break;
             default:
