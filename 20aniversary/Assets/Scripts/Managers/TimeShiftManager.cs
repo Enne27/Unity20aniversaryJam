@@ -20,11 +20,8 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask presentLayer;
     private LayerMask pastLayer;
 
-    public static bool hasDispositivoTemporal = false;
-
     // Fade Variables
     private float fadeDuration = 1f;
-    private float targetExposure = 0f;
     private float blackExposure = -10f;
     private bool isFading = false;
     private bool isFadingBack = false;
@@ -57,8 +54,9 @@ public class TimeShiftManager : MonoBehaviour
 
     void Update()
     {
-        if (timeTravelAction.action.WasPressedThisFrame() && hasDispositivoTemporal && !timeWarpVFX.isPlaying)
+        if (timeTravelAction.action.WasPressedThisFrame() && !timeWarpVFX.isPlaying)
         {
+            Debug.Log("Pressed");
             ShiftTime();
         }
 
