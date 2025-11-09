@@ -24,7 +24,7 @@ public class TimeShiftManager : MonoBehaviour
 >>>>>>> origin/Anuk
     /// <summary>
     /// En start, buscamos al player, y recuperamos su c�mara.
-    /// Buscamos las layers de pasado y presente, para poder uasrlas luego
+    /// Buscamos las layers de pasado y presente, para poder usarlas luego
     /// </summary>
     void Start()
     {
@@ -68,6 +68,11 @@ public class TimeShiftManager : MonoBehaviour
     /// </summary>
     private void ShiftTime()
     {
+        timeWarpVFX.Play();
+
+        colorAdjustments.postExposure.value = 0f;
+        isFading = true;
+        currentFadeTime = 0f;
         if (isPresent)
         {
             playerCam.cullingMask &= (1 << pastLayer);
