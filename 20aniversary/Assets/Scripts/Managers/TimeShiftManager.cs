@@ -13,11 +13,11 @@ public class TimeShiftManager : MonoBehaviour
     private LayerMask pastLayer;
 
     // Fade Variables
-    private float fadeDuration = 1f;
-    private float blackExposure = -10f;
-    private bool isFading = false;
-    private bool isFadingBack = false;
-    private float currentFadeTime = 0f;
+    // private float fadeDuration = 1f;
+    // private float blackExposure = -10f;
+    // private bool isFading = false;
+    // private bool isFadingBack = false;
+    // private float currentFadeTime = 0f;
 
     /// <summary>
     /// En start, buscamos al player, y recuperamos su c�mara.
@@ -61,11 +61,11 @@ public class TimeShiftManager : MonoBehaviour
     /// </summary>
     private void ShiftTime()
     {
-        timeWarpVFX.Play();
+        // timeWarpVFX.Play();
 
-        colorAdjustments.postExposure.value = 0f;
-        isFading = true;
-        currentFadeTime = 0f;
+        // colorAdjustments.postExposure.value = 0f;
+        // isFading = true;
+        // currentFadeTime = 0f;
         if (isPresent)
         {
             playerCam.cullingMask &= (1 << pastLayer);
